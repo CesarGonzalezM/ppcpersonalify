@@ -1,60 +1,70 @@
-(function(jQuery) {
-	jQuery.unvedlievable = function(options,callback){
-		if(typeof(options)=='function'){
-			var t = callback;
-			callback = options;
-			options = t;
-		}
-		jQuery.unvedlievable.opc = jQuery.extend( jQuery.unvedlievable.opc_default, options );
-		var ved = jQuery.unvedlievable.getRefParams(jQuery.unvedlievable.opc.url).ved;
-		if(ved){
-			for(i in jQuery.unvedlievable.veds()){
-				if(ved.indexOf(i)!=-1){
-					return jQuery.unvedlievable.returning(callback,jQuery.unvedlievable.veds()[i]);
-				}
+(function($) {
+     $.fn.ppcpersonalify = function(options){
+		var opc=$.extend({
+			class: '',
+			direct:			false,
+			ppc:			false,
+			seo:			false,
+			expires:		30,
+			onCookieCreate:	false
+		}, options );
+		
+		var referrer = 'direct';
+		var search_string = false;
+		var do_callback = false;
+		
+		var is = function(action){
+			if(action=='ppc'){
+				var params = $.fn.ppcpersonalify.getRefParams();
+				if(params.q) search_string = params.q;
+				if($.fn.ppcpersonalify.getRefParams(document.location.href).gclid) return true;
+				if(params.adurl) return true;
+				return false;
 			}
-			return jQuery.unvedlievable.returning(callback,'No VED transcription found');
+			if(action=='seo'){
+				if(document.referrer.search(/google/) != -1) return true;
+				return false;
+			}
 		}
-		return jQuery.unvedlievable.returning(callback,'No VED param found');
-	};
-	jQuery.unvedlievable.returning = function(callback,data){
-		if(callback){
-			callback(data);
+		
+		if($.cookie){
+			console.log('jQuery Cookie plugin required');
+			console.log('https://github.com/carhartl/jquery-cookie');
+			return false;
+		}
+		
+		
+		if($.cookie('referrer')!=='' && $.cookie('referrer')!=null){
+			referrer = $.cookie('referrer');
 		} else {
-			return data;
+			referrer = (is('ppc')?'ppc':((is('seo')?'seo':'direct')));
+			do_callback = true;
 		}
-	};
-	jQuery.unvedlievable.opc;
-	
-	jQuery.unvedlievable.opc_default = {
-		url:document.referrer,
-		texts:{
-			organic_search:						'Organic search',
-			news_onebox_link:					'News OneBox (link)',
-			news_onebox_image:					'News OneBox (image)',
-			image_onebox:						'Image OneBox',
-			video_onebox_link:					'Video OneBox (link)',
-			video_onebox_image:					'Video OneBox (image)',
-			organic_search_sitelink:			'Organic search - Sitelink',
-			knowledge_graph_image_leading:		'Knowledge Graph image (leading)',
-			knowledge_graph_image_nonleading:	'Knowledge Graph image (non-leading)'
+		$.cookie('referrer', referrer,{
+			expires: opc.expires,
+			path:'/'
+		});
+		$.cookie('search_string', search_string,{
+			expires: opc.expires,
+			path:'/'
+		});
+		if(do_callback) opc.onCookieCreate();
+		
+		if(opc[referrer]){
+			this.html(function(){
+				return opc[referrer];
+			})
 		}
-	};
-	
-	jQuery.unvedlievable.veds = function(){
-		return {
-			QFj:	jQuery.unvedlievable.opc.texts.organic_search,
-			QqQlw:	jQuery.unvedlievable.opc.texts.news_onebox_link,
-			Qpwl:	jQuery.unvedlievable.opc.texts.news_onebox_image,
-			Q9QEw:	jQuery.unvedlievable.opc.texts.image_onebox,
-			Qtwlw:	jQuery.unvedlievable.opc.texts.video_onebox_link,
-			QuAlw:	jQuery.unvedlievable.opc.texts.video_onebox_image,
-			Qjb:	jQuery.unvedlievable.opc.texts.organic_search_sitelink,
-			BEPwd:	jQuery.unvedlievable.opc.texts.knowledge_graph_image_leading,
-			BEP4d:	jQuery.unvedlievable.opc.texts.knowledge_graph_image_nonleading
-		};
-	};
-	jQuery.unvedlievable.getRefParams = function(url){
+		
+    };
+
+
+
+
+})(jQuery);	
+
+(function($) {
+     $.fn.ppcpersonalify.getRefParams = function(url){
 		if(!url) url = document.referrer;
 		var url_params = new Object();
 		if(typeof(url.split('?')[1])=='string'){
@@ -65,5 +75,12 @@
 			}
 		}
 		return url_params;
-	};
-})(jQuery);
+    };
+})(jQuery);	
+
+(function($) {
+     $.fn.ppcpersonalify.clearCookies = function(){
+		$.removeCookie('referrer', { path: '/' });
+		$.removeCookie('search_string', { path: '/' });
+	 };
+})(jQuery);	

@@ -13,17 +13,12 @@ Example: a google search returns an ad. User click on it and came into our page 
 - jquery.cookie ([http://github.com/carhartl/jquery-cookie](http://github.com/carhartl/jquery-cookie "jQuery Cookie"))
 	
 ## Options ##
-- clases:				array con las clases en las que se va a ejecutar la personalizacion
+- class:				selector css
 - original:				html original del elemento
-- final:				html final del elemento
-- duracion (opcional):	numero de días para la duracion de las cookies
+- ppc:					html del elemento para ppc
+- seo:					html del elemento para seo
+- expires:				numero de días para la duracion de las cookies
 - onCookieSave:			funcion callback para "afterCookieCreate"
-
-## Variables ##
-- referrer:				guarda el tipo de referrer
-- search_string:		cadena de busqueda en google
-- opc:					opciones del plugin
-- opc_default:			opciones por defecto del plugin
 	
 ## Methods ##
 - clearCookies:			elimina las cookies generadas por el plugin
@@ -31,5 +26,3 @@ Example: a google search returns an ad. User click on it and came into our page 
 - isGoogle:				devuelve true si el referrer es google
 - hasGclid:				devuelve true si la url tiene el parametro gclid
 - changeElements(var):	sustituye el html de los objetos seleccionados con la opcion clases por el html de la opcion final si 'var' es 'ppc'
-- getRefParams(url):	devuelve un objeto con todos los parametros de la 'url'. Si no se pasa una url, devuelve los parametros del referrer.
-- cookieCreate:			Guarda cookies
