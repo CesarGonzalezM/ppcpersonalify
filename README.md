@@ -17,7 +17,7 @@ Opciones:
 Variables:
 - ved:					tipo de resultado en la busqueda en google
 - referrer:				guarda el tipo de referrer
-- search_string:		cadena de bÃºsqueda en google
+- search_string:		cadena de busqueda en google
 - opc:					opciones del plugin
 - opc_default:			opciones por defecto del plugin
 	
