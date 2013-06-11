@@ -1,6 +1,8 @@
 PPC Personalify
 ===============
 
+v.1.4
+
 This is a plugin created to change html elements depending on referrer (such as contact phone or images) storing the rendered elements in cookies to show the same elements in new visits from the same browser.
 
 Example: a google search returns an ad. User click on it and came into our page ppc personalified. Same user came again after several days through direct traffic but he'll always see the same personalified page.
