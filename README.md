@@ -10,7 +10,7 @@ Example: a google search returns an ad. User click on it and came into our page 
 ## Requirements ##
 
 - jquery 1.4.2+
-- jquery.cookie (http://github.com/carhartl/jquery-cookie)
+- jquery.cookie ([http://github.com/carhartl/jquery-cookie](http://github.com/carhartl/jquery-cookie "jQuery Cookie"))
 	
 ## Options ##
 - clases:				array con las clases en las que se va a ejecutar la personalizacion
@@ -20,7 +20,6 @@ Example: a google search returns an ad. User click on it and came into our page 
 - onCookieSave:			funcion callback para "afterCookieCreate"
 
 ## Variables ##
-- ved:					tipo de resultado en la busqueda en google
 - referrer:				guarda el tipo de referrer
 - search_string:		cadena de busqueda en google
 - opc:					opciones del plugin
@@ -33,5 +32,4 @@ Example: a google search returns an ad. User click on it and came into our page 
 - hasGclid:				devuelve true si la url tiene el parametro gclid
 - changeElements(var):	sustituye el html de los objetos seleccionados con la opcion clases por el html de la opcion final si 'var' es 'ppc'
 - getRefParams(url):	devuelve un objeto con todos los parametros de la 'url'. Si no se pasa una url, devuelve los parametros del referrer.
-- unvedlievable:		MAGIC! devuelve el tipo de click en los resultados de busqueda si esta disponible :D EPIC FUCK YEAH
 - cookieCreate:			Guarda cookies
