@@ -1,7 +1,6 @@
 (function($) {
      $.fn.ppcpersonalify = function(options){
 		var opc=$.extend({
-			class: '',
 			direct:			false,
 			ppc:			false,
 			seo:			false,
@@ -27,7 +26,7 @@
 			}
 		}
 		
-		if($.cookie){
+		if(typeof($.cookie)=='undefined'){
 			console.log('jQuery Cookie plugin required');
 			console.log('https://github.com/carhartl/jquery-cookie');
 			return false;
