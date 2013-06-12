@@ -24,7 +24,7 @@
 				if(document.referrer.search(/google/) != -1) return true;
 				return false;
 			}
-		}
+		};
 		
 		if(typeof($.cookie)=='undefined'){
 			console.log('jQuery Cookie plugin required');
